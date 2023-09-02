@@ -115,7 +115,6 @@ def reto2():
             # Conexión a la base de datos.
             connection = mysql.connector.connect(user=db_user, password=db_password, host=db_host, database=db_database)
             cursor = connection.cursor()
-
             # Construcción de la consulta SQL con las entradas del usuario.
             query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
 
@@ -123,15 +122,6 @@ def reto2():
                 # Ejecutar la query proporcionada por el usuario.
                 cursor.execute(query)
                 results = cursor.fetchall()
-
-                # Comprobar si los resultados contienen información sobre la versión de MySQL.
-                mysql_found = any("MySQL" in str(row) for row in results)
-
-                if mysql_found:
-                    session['reto_actual'] = 3
-                    mensaje = f"¡Felicidades! Has descubierto que la base de datos es MySQL."
-                else:
-                    mensaje = "Inténtalo de nuevo"
 
             except mysql.connector.Error as e:
                 error_message = str(e)
@@ -141,7 +131,7 @@ def reto2():
                     session['reto_actual'] = 3
                     mensaje = f"¡Felicidades! Has descubierto que la base de datos es MySQL a través del error: {error_message}"
                 else:
-                    mensaje = error_message
+                    mensaje = "Inténtalo de nuevo. La clave está en el error."
 
             finally:
                 cursor.close()
