@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 14 - CSRF TOKEN</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+        {{ custom_style|safe }}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reto 14 - XSS + CSRF</h1>
+    </header>
+
+    <main>
+        <p class="challenge-text">Para superar este reto debes realizar una transferencia de "1000" a la cuenta "IBAN1234567" sin realizarla directamente desde ésta página.</p>
+        <h3 class="error">No debes mirar el código fuente hasta que no tengas el valor del token</h3>
+
+        <div class="saldo-card">
+            <h2> Cuenta: IBAN1234567 <span>Saldo: {{ saldo }} €</span></h2>
+        </div>
+
+        <form method="post" action="/reto14">
+            <input type="hidden" name="source" value="legitimo">
+
+            <label for="cuenta_destino">Cuenta destino:</label>
+            <input type="text" id="cuenta_destino" name="cuenta_destino" required></br>
+
+            <label for="cantidad">Importe a transferir:</label>
+            <input type="text" id="cantidad" name="cantidad" required></br>
+
+            <label for="concepto">Concepto de la transferencia:</label>
+            <input type="text" id="concepto" name="concepto" required></br>
+
+            <label for="provided_csrf_token">Token CSRF:</label>
+            <input type="text" id="provided_csrf_token" name="provided_csrf_token">
+            <input type="hidden" id="hiddenCsrfToken" value="{{ csrf_token }}"></br>
+
+            <input type="submit" value="Transferir" class="button">
+        </form>
+
+        <p>{{ concepto|safe }}</p>
+
+        <section>
+            <a href="/reto13" class="button">Reto Anterior</a>
+
+            {% if mensaje %}
+                <p class="{{ 'success-message' if reto_superado else 'error-message' }}">{{ mensaje|safe }}</p>
+
+                {% if reto_superado %}
+                    <a href="/reto15login" class="button">Siguiente reto</a>
+                {% endif %}
+            {% endif %}
+        </section>
+    </main>
+    <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                let csrfToken = "{{ csrf_token }}";
+                let input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'provided_csrf_token';
+                input.value = csrfToken;
+                e.target.appendChild(input);
+            });
+        </script>
+</body>
+</html>

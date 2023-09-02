@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 11: XSS basado en la fuente</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+        {{ custom_style|safe }}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Reto 11: XSS basado en la fuente</h1>
+    </header>
+    <main>
+        <p class="challenge-text">Deberás cambiar la fuente de ésta página.</p>
+        <form action="/reto11" method="post" enctype="multipart/form-data">
+            <label for="image">Subir imagen (o fuente):</label>
+            <input type="file" id="image" name="image">
+            <input type="submit" value="Subir">
+        </form>
+        <form action="/reto11" method="post">
+            <label for="style">Aplicar estilo:</label>
+            <textarea id="style" name="style"></textarea>
+            <input type="submit" value="Aplicar">
+        </form>
+        <a href="/reto10" class="button">Reto Anterior</a>
+            {% if mensaje %}
+                <p class="{{ 'success-message' if 'Felicidades' in mensaje or 'Imagen (u otro archivo) cargada correctamente.' in mensaje else 'error-message' }}">{{ mensaje }}</p>
+                {% if "Felicidades" in mensaje %}
+                    <a href="/reto12" class="button">Siguiente reto</a>
+                {% endif %}
+            {% endif %}
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 15 - FINAL</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+        {{ custom_style|safe }}
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <p class="challenge-text">Panel del administrador</p>
+        </header>
+        <div>
+            <table border="1">
+            <thead>
+                <tr>
+                    <th>ID del Usuario</th>
+                    <th>Contenido del Mensaje</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in mensajes %}
+                <tr>
+                     <!-- ID del usuario -->
+                    <td >{{ msg[2] }}</td>
+                     <!-- Contenido del mensaje -->
+                    <td class="comentario">{{ msg[1]|safe }}</td>
+                    <td><a href="/reto15delete?mensaje_id={{ msg[0] }}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+           </br> <a href="/reto15logout" class="button">Logout</a>
+        </div>
+    </main>
+      <div>{{ mensajes.contenido|safe }}</div>
+
+</body>
+</html>
+
+

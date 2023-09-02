@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 8</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reto 8 - XSS Almacenado</h1>
+    </header>
+    <main>
+        <p>Deja un comentario que de alguna manera genere un pop-up con la palabra "hackeado".</p>
+        <form action="/reto8" method="post">
+            <textarea name="comment" placeholder="Deja tu comentario..."></textarea>
+            <input type="submit" value="Comentar">
+        </form>
+        <ul>
+            {% for comment in comments %}
+                <li>{{ comment | safe }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/reto7" class="button">Reto Anterior</a>
+        {% if mensaje %}
+         <p class="{{ 'success-message' if 'Felicidades' in mensaje else 'error-message' }}">{{ mensaje }}</p>
+             {% if "Felicidades" in mensaje %}
+               <a href="/reto9" class="button">Siguiente reto</a>
+            {% endif %}
+        {% endif %}
+    </main>
+</body>
+
+</html>

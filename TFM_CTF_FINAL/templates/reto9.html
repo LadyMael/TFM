@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 9</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+        {% for comment in comments %}
+        {{ comment|safe }}
+    {% endfor %}
+</head>
+
+<body>
+    <header>
+        <h1>Reto 9 - Inyección de CSS</h1>
+    </header>
+    <main>
+        <p class="challenge-text">Deja un comentario que cambie el fondo de pantalla de esta página.</p>
+        <form action="/reto9" method="post">
+            <textarea name="comment" placeholder="Deja tu comentario..."></textarea>
+            <input type="submit" value="Comentar">
+        </form>
+        <a href="/reto8" class="button">Reto Anterior</a>
+        {% if mensaje %}
+         <p class="{{ 'success-message' if 'Felicidades' in mensaje else 'error-message' }}">{{ mensaje }}</p>
+             {% if "Felicidades" in mensaje %}
+               <a href="/reto10" class="button">Siguiente reto</a>
+            {% endif %}
+        {% endif %}
+    </main>
+</body>
+
+
+</html>

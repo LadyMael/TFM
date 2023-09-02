@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 7</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Reto 7 - XSS Reflejado - Avanzado</h1>
+    </header>
+    <main>
+        <p class="challenge-text">Encuentra el método para inyectar un código que genere un mensaje de alerta con la palabra "hackeado".</p>
+        <form action="/reto7" method="post">
+            <input type="text" name="query" placeholder="Buscar...">
+            <input type="submit" value="Buscar">
+        </form>
+
+        <div class="search-result">Resultado de la búsqueda: {{ query|safe }}</div></br>
+            <a href="/reto6" class="button">Reto Anterior</a>
+            {% if mensaje %}
+             <p class="{{ 'success-message' if 'Felicidades' in mensaje else 'error-message' }}">{{ mensaje }}</p>
+                 {% if "Felicidades" in mensaje %}
+                   <a href="/reto8" class="button">Siguiente reto</a>
+                {% endif %}
+            {% endif %}
+    </main>
+</body>
+</html>
+

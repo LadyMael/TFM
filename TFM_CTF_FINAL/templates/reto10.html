@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 10</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reto 10 - XSS basado en eventos</h1>
+    </header>
+    <main>
+        <p class="challenge-text">Deja un comentario que ejecute código JavaScript cuando un usuario interactúe con él.</p>
+        <form action="/reto10" method="post">
+            <textarea name="comment" placeholder="Deja tu comentario..."></textarea>
+            <input type="submit" value="Comentar">
+        </form>
+        <a href="/reto9" class="button">Reto Anterior</a></br>
+        <div>
+            {% for comment in comments %}
+                {{ comment|safe }}
+            {% endfor %}
+        </div>
+        {% if mensaje %}
+            <p class="{{ 'success-message' if 'Felicidades' in mensaje else 'error-message' }}">{{ mensaje }}</p>
+            {% if "Felicidades" in mensaje %}
+                <a href="/reto11" class="button">Siguiente reto</a>
+            {% endif %}
+        {% endif %}
+    </main>
+</body>
+</html>
+
+

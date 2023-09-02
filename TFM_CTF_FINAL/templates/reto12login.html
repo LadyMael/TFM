@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 12 - Login</title>
+    <style>
+        body {
+        background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+        background-size: cover;
+          }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reto 12 - Iniciar Sesión</h1>
+    </header>
+    <main>
+        <p class="challenge-text">Para realizar los siguientes retos debes estar logueado en el sistema.</p>
+        <p class="challenge-text"> Inicia sesión con el usuario "user" y contraseña "passwd".</p>
+            <p>(¡si has modificado tu username entra con ese nuevo usuario!)</p>
+        <form method="post" action="/reto12login">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Iniciar sesión" class="button">
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+
+        {% if session['username_retosCSRF'] %}
+            <a href="/reto11" class="button">Reto Anterior</a>
+        {% endif %}
+    </main>
+</body>
+</html>
+
+
+
+

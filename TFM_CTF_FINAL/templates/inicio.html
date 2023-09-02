@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Laboratorio de Retos de Seguridad Web</title>
+        <style>
+        body {
+
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente negro */
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.15); /* Fondo semitransparente blanco */
+        }
+
+        header h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .intro, .challenge-box p {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        input[type="text"], input[type="password"] {
+            color: black;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .button {
+            background-color: red; /* Cambio a rojo */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background-color: darkred;
+        }
+
+        footer {
+            text-align: center;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <h1>Bienvenid@ al Laboratorio de Retos de Seguridad Web</h1>
+            </header>
+            <main>
+                <p class="intro">¿Listo para poner a prueba tus habilidades de seguridad web?</p></br>
+                <div class="challenge-box">
+                    <p>Sumérgete en un mundo de desafíos de ciberseguridad y descubre los secretos que hay detrás de las vulnerabilidades más comunes.</p>
+                    <p>Este laboratorio te desafía en tus conocimientos de seguridad web, desde inyecciones SQL, vulnerabilidades XSS y CSRF.</p>
+                </div>
+                </br>
+                <a href="/reto1" class="button">Iniciar Desafío</a>
+            </main>
+            <footer>
+                </br></br>
+                <p>© 2023 Retos de Seguridad Web - TFM PATRICIA VAZQUEZ MATEO</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

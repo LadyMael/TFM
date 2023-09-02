@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 4</title>
+    <style>
+        body {
+        background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+        background-size: cover;
+          }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reto 4: Inyección SQL Blind</h1>
+    </header>
+    <main>
+        <p class="challenge-text">A veces los payload no se tienen un campo donde introducirlos....</br>
+            Averigua si algún usuario administrador o similar existe en alguna de las tablas que ya conoces...</p>
+        <a href="/reto3" class="button">Reto Anterior</a></br>
+        <p class="success-message">{{ mensaje }}</p>
+
+        {% if reto_resuelto %}
+            <a href="/reto5" class="button">Siguiente reto</a>
+        {% endif %}
+
+    </main>
+</body>
+
+
+</html>

@@ -1,0 +1,157 @@
+body {
+    font-family: 'Arial', sans-serif; 'comic';
+    margin: 0;
+    padding: 0;
+    background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+}
+
+header h1 {
+    color: #ffffff; /* Color blanco */
+    text-align: center;
+    margin-top: 100px;
+}
+
+h1, h2, href {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.intro, .challenge-text {
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+main {
+    width: 80%;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+
+}
+
+label, input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background: white;
+    color: black;
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+input[type="submit"] {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px auto;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: darkred;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    background-color: darkred;
+}
+
+.success-message {
+    color: orange;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+#fuente-url {
+    color: black;
+}
+
+.info-message {
+    color: orange;
+}
+
+.flashes {
+    background-color: #ffcccc;
+    border: 1px solid red;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.comentario  {
+    color: orange;
+}
+
+.saldo-card {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+.saldo-card h2 {
+        margin: 0;
+        color: #333;
+        font-size: 24px;
+    }
+
+.saldo-card span {
+        color: #2ECC71; /* Color verde */
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+
+</style>

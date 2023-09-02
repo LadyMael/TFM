@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 13 - CSRF</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+        {{ custom_style|safe }}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Reto 13 - Transferencia de Fondos CSRF</h1>
+    </header>
+    <main>
+        <p class="challenge-text">¡Bienvenido <span {% if reto_superado %} class="success-message" {% endif %}>{{ username }}</span>!</p>
+        <p class="challenge-text">Debes realizar una transferencia de "1000" a la cuenta "IBAN1234567" sin hacerlo directamente desde esta página.</p>
+        <div class="saldo-card">
+            <h2> Cuenta: IBAN1234567 <span>Saldo: {{ saldo }} €</span></h2>
+        </div>
+
+        <form method="post" action="/reto13">
+            <input type="hidden" name="source" value="legitimo">
+            <label for="cuenta_destino">Número de cuenta destino:</label>
+            <input type="text" id="cuenta_destino" name="cuenta_destino" required></br>
+            <label for="cantidad">Cantidad a transferir:</label>
+            <input type="text" id="cantidad" name="cantidad" required>
+            <input type="submit" value="Transferir" class="button">
+        </form>
+
+        <a href="/reto12login" class="button">Volver al Login</a><br>
+        <a href="/reto12" class="button">Reto Anterior</a>
+            {% if mensaje %}
+                <p class="{{ 'success-message' if reto_superado else 'error-message' }}">{{ mensaje }}</p>
+                {% if reto_superado %}
+                    <a href="/reto14" class="button">Siguiente reto</a>
+                {% endif %}
+            {% endif %}
+
+    </main>
+</body>
+
+
+</html>

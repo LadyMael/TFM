@@ -1,0 +1,33 @@
+Opción 1:
+
+En caso de no querer utilizar Docker:
+En esta carpeta "mysql-docker" se encuentra un dump de la base de datos (ctf) que utiliza la aplicación.
+Los datos de conexión que utiliza la aplicación son éstos (modificar en app.py si no se quieren poner estos):
+
+db_host = 'localhost'
+db_user = 'root'
+db_password = 'passwordtfm'
+db_database = 'ctf'
+
+Se recomienda utilizar la aplicación "MySQL Workbench" para importar el dump de la DB "ctf.sql" a un servidor mysql.
+
+Opción 2:
+
+Si se utiliza DOCKER:
+1.Ejecutar en terminal "docker-compose up" que está en el mismo directorio que "app.py".
+1.Ver que nombre tiene el servidor con "docker ps"
+2.Comprobar que ip tiene asignado el contenedor, para ello ejecutar en terminal:
+"docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nombre_servidor"
+3.Importar la base de datos "ctf". Se recomienda realizar este paso como se indica en la opción 1.
+4.Acceder a mysql del contenedor y comprobar las tablas de la db "ctf":
+"docker exec -it nombre_contenedor mysql -h ip_contenedor -P 3306 -u root -ppasswordtfm"
+
+
+Anexo:
+ctf.sql --> copia de la base de datos "ctf" que usa la aplicación
+mysqltfm_tfmv1.tar --> replica contenedor (OJO! comprobar que contiene la estructura de tablas de la aplicación!!!)
+
+Tablas de la aplicación:
+-mensajes
+-users
+-secret_table

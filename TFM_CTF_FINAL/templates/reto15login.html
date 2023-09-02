@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reto 15 - Inicio de sesión</title>
+    <style>
+        body {
+            background: url({{ url_for('static', filename='background.jpg') }}) no-repeat center center fixed;
+            background-size: cover;
+        }
+        {{ custom_style|safe }}
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Reto 15 - SQLi + XSS + CSRF</h1>
+            <p class="challenge-text">Iniciar sesión como usuario "user" & contraseña "passwd"</p>
+        </header>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="post" action="/reto15login">
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required><br>
+            <input type="submit" value="Iniciar sesión">
+        </form>
+         <a href="/reto14" class="button">Reto Anterior</a></br>
+        {% if mensaje %}
+            <div class="{% if success %}success-message{% else %}error-message{% endif %}">
+                {{ mensaje }}
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>
