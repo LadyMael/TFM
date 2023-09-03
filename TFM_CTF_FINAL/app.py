@@ -652,7 +652,7 @@ def reto14():
 
     concepto = session.get('last_concept', '')
 
-    return render_template('reto14.html_', mensaje=mensaje, csrf_token=session.get('csrf_token'), concepto=concepto, reto_superado=reto_superado, saldo=saldo_destino)
+    return render_template('reto14.html', mensaje=mensaje, csrf_token=session.get('csrf_token'), concepto=concepto, reto_superado=reto_superado, saldo=saldo_destino)
 
 # RETO FINAL SQLi + XSS + CSRF
 
