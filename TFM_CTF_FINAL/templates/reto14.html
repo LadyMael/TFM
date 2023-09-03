@@ -46,6 +46,8 @@
             <input type="submit" value="Transferir" class="button">
         </form>
 
+        <button id="validarTokenButton">Validar Token</button>
+
         <p>{{ concepto|safe }}</p>
 
         <section>
@@ -60,15 +62,21 @@
             {% endif %}
         </section>
     </main>
+
     <script>
-            document.querySelector('form').addEventListener('submit', function(e) {
-                let csrfToken = "{{ csrf_token }}";
-                let input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'provided_csrf_token';
-                input.value = csrfToken;
-                e.target.appendChild(input);
-            });
-        </script>
+        document.getElementById('validarTokenButton').addEventListener('click', function() {
+            alert("No se pudo validar el token con id=hiddenCsrfToken");
+        });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let csrfToken = "{{ csrf_token }}";
+            let input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'provided_csrf_token';
+            input.value = csrfToken;
+            e.target.appendChild(input);
+        });
+    </script>
 </body>
+
 </html>
